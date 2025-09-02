@@ -15,18 +15,18 @@ PREGUNTA: Diseñe y diagrame una arquitectura
 
 ```mermaid
 flowchart TD
-    A[Fuente de registros] --> B[Cloud Scheduler / Trigger]
-    B --> C[Validador y Normalizador (Cloud Run / CF)]
-    C -->|Auditoría| D[(BigQuery / Storage)]
-    C --> E[Cloud Tasks Queue (rate limit: 10 req/s, retries, TTL)]
+    A[Fuente de registros] --> B[Cloud Scheduler o Trigger]
+    B --> C[Validador y Normalizador Cloud Run]
+    C -->|Auditoria| D[(BigQuery o Storage)]
+    C --> E[Cloud Tasks Queue - rate limit 10 req por segundo - retries - TTL]
     E -->|HTTP Push| F[Worker en Cloud Run]
     F --> G[API Proveedor de llamadas]
-    G -->|Respuestas síncronas| F
-    F --> H[Pub/Sub DLQ opcional (errores definitivos > N reintentos)]
+    G -->|Respuestas sincronas| F
+    F --> H[PubSub DLQ opcional - errores definitivos]
 
     I[Webhook estados proveedor] --> J[Cloud Run Webhook]
-    J --> K[(BigQuery métricas/estado)]
-    J --> L[Alerting / Monitoring]
+    J --> K[(BigQuery metricas y estado)]
+    J --> L[Alerting y Monitoring]
 
 ## Componentes y políticas clave
 
