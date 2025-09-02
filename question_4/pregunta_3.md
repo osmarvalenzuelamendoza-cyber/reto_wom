@@ -13,23 +13,20 @@ PREGUNTA: Diseñe y diagrame una arquitectura
 
 # Flujo de arquitectura (alto nivel)
 
-# Flujo de arquitectura (alto nivel)
-
 ```mermaid
 flowchart TD
-    A[Fuente de registros] --> B(Cloud Scheduler / Trigger)
-    B --> C[Validador & Normalizador<br/>(Cloud Run / CF)]
+    A[Fuente de registros] --> B[Cloud Scheduler / Trigger]
+    B --> C[Validador y Normalizador (Cloud Run / CF)]
     C -->|Auditoría| D[(BigQuery / Storage)]
-    C --> E[Cloud Tasks Queue<br/>(rate limit: 10 req/s, retries, TTL)]
+    C --> E[Cloud Tasks Queue (rate limit: 10 req/s, retries, TTL)]
     E -->|HTTP Push| F[Worker en Cloud Run]
     F --> G[API Proveedor de llamadas]
     G -->|Respuestas síncronas| F
-    F --> H[Pub/Sub DLQ opcional<br/>(errores definitivos > N reintentos)]
+    F --> H[Pub/Sub DLQ opcional (errores definitivos > N reintentos)]
 
     I[Webhook estados proveedor] --> J[Cloud Run Webhook]
     J --> K[(BigQuery métricas/estado)]
     J --> L[Alerting / Monitoring]
-
 
 ## Componentes y políticas clave
 
