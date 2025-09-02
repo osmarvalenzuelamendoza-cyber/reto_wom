@@ -1,0 +1,3 @@
+.venv/
+.terraform/
+__pycache__/
