@@ -1,27 +1,27 @@
-PREGUNTA: Indicar que preguntas realizarías como especialista técnico a las áreas de
-negocio
+PREGUNTA: Indicar que preguntas realizarías como especialista técnico a las áreas de negocio
 
-## Capacidad & Límites
+## Contexto & SLA
 
-- Límite 10 req/s: ¿por cliente, IP, API key o cuenta? ¿Cuotas por minuto/hora/día?
-- Latencia p50/p95, concurrencia aceptada, tamaño máximo de payload.
+- ¿Cuál es el objetivo de la llamada (cobranza, NPS, retención, confirmaciones)?
+- ¿SLA de inicio de llamada desde que se genera el registro? ¿Ventanas horarias por zona horaria y consentimiento?
+- ¿Priorización (VIP, morosos, riesgo, campañas)? ¿Reintentos requeridos y con qué cadencia/límites?
 
-## Contrato & Resiliencia
+## Datos & Calidad
 
-- ¿Existe Idempotency-Key? Recomendaciones de retries y backoff.
-- Esquema de errores (transitorios vs definitivos) y límites de reintentos aceptables.
+- Campos mínimos por registro (id, teléfono normalizado, país, idioma, campaña, motivo, canal preferido, consentimiento).
+- Fuente maestra y unicidad del registro. ¿Cómo definimos idempotencia/dedupe?
 
-## Funcionalidad
+## Negocio & Métrica
 
-- ¿Endpoint batch o 1 llamada = 1 intento?
-- ¿Tienen webhooks/callbacks de estado (ringing/answered/failed) y reintentos del webhook?
+- ¿Qué es éxito de la llamada? (conectada, atendida, duración, resultado).
+- KPIs y tableros (tasa conexión, intentos, tiempos, rechazos, costos).
 
-## Seguridad & Cumplimiento
+## Cumplimiento
 
-- Autenticación (OAuth2, API key, mTLS, IP allowlist).
-- Regiones y residencia de datos; cifrado en tránsito/at-rest; certificaciones (ISO, SOC).
-- Sandbox/entorno de prueba con datos ficticios.
+- Políticas de Do-Not-Call/consentimiento, retención de datos, GDPR/PCI/LOPD.
+- ¿Requieren grabación o solo disparar la llamada? ¿Necesidad de auditoría (quién/qué/cuándo)?
 
 ## Operación
 
-- SLA de disponibilidad y soporte, versionamiento, posibilidad de burst negociable.
+- Volúmenes máximos y picos (campañas, estacionales).
+- ¿Necesitan pausar o estrangular el envío (throttling) en caliente?
