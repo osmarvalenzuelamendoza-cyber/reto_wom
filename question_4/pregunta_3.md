@@ -27,6 +27,7 @@ flowchart TD
     I[Webhook estados proveedor] --> J[Cloud Run Webhook]
     J --> K[(BigQuery metricas y estado)]
     J --> L[Alerting y Monitoring]
+```
 
 ## Componentes y políticas clave
 
