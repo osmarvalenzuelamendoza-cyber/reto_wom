@@ -1,0 +1,6 @@
+project_id     = "gothic-victor-470918-u3"
+region         = "us-central1"
+bucket_input   = "entrada-json"
+bucket_output  = "salida-raw"
+function_name  = "procesar_json"
+topic_name     = "json-ingest-events"

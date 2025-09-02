@@ -1,0 +1,5 @@
+project_id        = "gothic-victor-470918-u3"
+region            = "us-central1"
+composer_env_name = "composer-etl-env"
+gcs_dag_bucket    = "composer-dags-joshua"
+bq_location       = "US"
